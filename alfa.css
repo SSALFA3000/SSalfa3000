@@ -52,6 +52,32 @@ nav a {
     font-weight: bold;
 }
 
+header nav {
+    background-color: #003366;
+    padding: 10px 0;
+    /* ESTO ES LO QUE ARREGLA EL AMONTONAMIENTO */
+    display: flex;
+    overflow-x: auto; /* Permite deslizar si no cabe */
+    white-space: nowrap; /* Evita que las palabras bajen a la siguiente línea */
+    -webkit-overflow-scrolling: touch; /* Hace que el deslizamiento sea suave en iPhone */
+    scrollbar-width: none; /* Esconde la barrita en Firefox */
+}
+
+/* Esconde la barrita de desplazamiento en Chrome/Android */
+header nav::-webkit-scrollbar {
+    display: none;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block; /* Importante para el deslizamiento */
+}
+
+
 /* Hero Section */
 #hero {
     min-height: 250px;
