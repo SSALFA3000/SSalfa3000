@@ -1,0 +1,366 @@
+/* Reset general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+.container {
+    width: 85%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Header */
+header {
+    background: #003366; /* Azul Oscuro */
+    color: #ffffff;
+    padding-top: 30px;
+    min-height: 100px;
+    border-bottom: #00a8e8 3px solid; /* Acento Azul Claro */
+}
+
+#branding h1 {
+    margin: 0;
+    text-transform: uppercase;
+}
+
+nav {
+    float: right;
+    margin-top: -40px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav li {
+    display: inline;
+    margin-left: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Hero Section */
+#hero {
+    min-height: 250px;
+    background: linear-gradient(rgba(0,51,102,0.8), rgba(0,51,102,0.8)), 
+                url('https://images.unsplash.com/photo-1558441719-ffb4d035186f?q=80&w=1000') no-repeat center center/cover;
+    text-align: center;
+    color: #fff;
+    padding-top: 80px;
+}
+
+#hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+/* Productos Grid */
+.section-title {
+    text-align: center;
+    margin: 40px 0;
+    color: #003366;
+    font-size: 2rem;
+}
+
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.img-placeholder {
+    width: 100%;
+    height: 180px;
+    background: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.card h4 {
+    margin-bottom: 5px;
+    color: #003366;
+}
+
+.modelo {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.precio {
+    font-size: 1.4rem;
+    color: #d32f2f;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.btn-cotizar {
+    background: #25d366; /* Color WhatsApp */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.img-container {
+    width: 100%;       /* Ocupa todo el ancho de la tarjeta */
+    height: 200px;     /* ALTURA FIJA: Ajusta este número a tu gusto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;  /* Si la foto es muy grande, corta lo que sobra */
+    background-color: #f9f9f9; /* Un gris clarito de fondo por si la foto es pequeña */
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.img-container img {
+    max-width: 90%;    /* Que no toque los bordes del cuadro */
+    max-height: 90%;   /* Que no se salga por arriba o abajo */
+    object-fit: contain; /* Mantiene la forma original de la foto (no la estira) */
+}
+
+.grid-detalles {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Esto crea las 2 columnas que marcaste en amarillo */
+    gap: 20px;                      /* Espacio entre las columnas */
+    padding: 15px;
+    align-items: start;             /* Alinea el contenido arriba */
+}
+
+.info-producto {
+    text-align: center;             /* Centra el texto dentro de su columna */
+}
+
+/* Para que en celulares no se vea muy apretado, podemos hacer que se pongan uno arriba del otro solo en pantallas pequeñas */
+@media (max-width: 480px) {
+    .grid-detalles {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* TARJETA DESTACADA ÚNICA */
+.card-destacada-asgard {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    overflow: hidden;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Imagen arriba, tabla abajo */
+    align-items: center;    /* Centra todo horizontalmente */
+}
+
+/* CONTENEDOR IMAGEN CENTRAL */
+.img-central-container {
+    width: 100%;
+    max-width: 400px; /* Limita el ancho para que no sea gigante */
+    height: auto;
+    margin-bottom: 25px; /* Espacio con la tabla */
+    display: flex;
+    justify-content: center;
+}
+
+.img-asgard-destacada {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Mantiene la forma del breaker */
+}
+
+/* TABLA DE MODELOS */
+.tabla-modelos-asgard {
+    width: 100%;
+    border-top: 2px solid #eee;
+    padding-top: 15px;
+}
+
+.titulo-tabla {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+/* FILAS DE LA TABLA */
+.fila-tabla {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr auto; /* Anchos de columna */
+    gap: 15px;
+    align-items: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    transition: background 0.2s;
+}
+
+/* EFECTO HOVER PARA QUE SE SEPA CUÁL FILA ESTÁ MIRANDO */
+.fila-tabla:not(.encabezado):hover {
+    background-color: #f9f9f9;
+}
+
+/* ESTILO ENCABEZADO */
+.fila-tabla.encabezado {
+    background-color: #333;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 6px;
+    border-bottom: none;
+}
+
+/* ESTILOS DE TEXTO DENTRO DE LA TABLA */
+.nombre-modelo {
+    font-weight: bold;
+    color: #222;
+}
+
+.ruptura {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.precio {
+    color: #e44d26; /* Tu color de precio */
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* BOTÓN DE COTIZAR PEQUEÑO PARA LA TABLA */
+.btn-cotizar-tabla {
+    background-color: #25d366;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background 0.2s;
+}
+
+.btn-cotizar-tabla:hover {
+    background-color: green;
+}
+
+/* AJUSTE PARA CELULARES (HACER LA TABLA SCOLLABLE SI ES MUY ANCHA) */
+@media (max-width: 600px) {
+    .tabla-modelos-asgard {
+        overflow-x: auto; /* Permite scroll horizontal en móvil */
+    }
+    .fila-tabla {
+        min-width: 500px; /* Ancho mínimo para que no se amontone en móvil */
+    }
+}
+
+/* Contenedor del botón fijo */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    background-color: #128c7e;
+    transform: scale(1.1);
+}
+
+.whatsapp-icon {
+    width: 35px;
+    height: 35px;
+}
+
+/* Efecto al pasar el mouse */
+.btn-whatsapp-fijo:hover {
+    background-color: #128c7e;
+    transform: scale(1.1); /* Crece un poquito */
+}
+
+/* Estilo de la imagen (Logo) */
+.btn-whatsapp-fijo img {
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+}
+
+/* Estilo del texto */
+.btn-whatsapp-fijo span {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* --- AJUSTES PARA CELULARES --- */
+@media (max-width: 600px) {
+    .container {
+        width: 95%; /* Que use casi toda la pantalla */
+        padding: 10px;
+    }
+
+    .grid-productos {
+        display: grid;
+        grid-template-columns: 1fr !important; /* Fuerza a que sea 1 sola columna */
+        gap: 20px;
+    }
+
+    header h1 {
+        font-size: 1.8rem; /* Letras un poco más pequeñas para que quepan */
+    }
+
+    nav ul {
+        flex-direction: column; /* Menú en lista hacia abajo */
+        text-align: center;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+    
+    .card img {
+        max-width: 100%; /* Que la imagen no se salga del cuadro */
+        height: auto;
+    }
+}
