@@ -9,25 +9,22 @@
 <body>
 
     <header>
-        <div class="header-main">
-            <div class="logo-area">
-                <h1>ALFA 3000</h1>
-                <p>Servicios y Suministros Eléctricos</p>
-            </div>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <div class="header-main">
+        <div class="logo-area">
+            <h1>ALFA 3000</h1>
         </div>
-        
-        <nav id="main-nav">
-            <button class="close-menu" onclick="toggleMenu()">✕</button>
-            <a href="#arrancadores" onclick="toggleMenu()">Arrancadores</a>
-            <a href="#mini-6ka" onclick="toggleMenu()">Riel DIN 6kA</a>
-            <a href="#asgard" onclick="toggleMenu()">Caja Moldeada</a>
-            <a href="#cosmos" onclick="toggleMenu()">Serie Cosmos</a>
-            <a href="#control" onclick="toggleMenu()">Control</a>
-            <a href="#botones" onclick="toggleMenu()">Botonería</a>
-        </nav>
-        <div class="menu-overlay" id="overlay" onclick="toggleMenu()"></div>
-    </header>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </div>
+    
+    <!-- El nav debe estar aquí, solito -->
+    <nav id="main-nav">
+        <button class="close-menu" onclick="toggleMenu()">✕</button>
+        <a href="#arrancadores">Arrancadores</a>
+        <a href="#mini-6ka">Riel DIN 6kA</a>
+        ...
+    </nav>
+    <div class="menu-overlay" id="overlay" onclick="toggleMenu()"></div>
+</header>
 
     <main class="container">
 
