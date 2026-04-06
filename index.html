@@ -9,27 +9,30 @@
 <body>
 
     <header>
-    <div class="header-main">
-        <div class="logo-area">
-            <h1>ALFA 3000</h1>
+        <div class="header-main">
+            <div class="logo-area">
+                <h1>ALFA 3000</h1>
+                <p>Servicios y Suministros Eléctricos</p>
+            </div>
+            <!-- Botón Hamburguesa -->
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         </div>
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    </div>
-    
-    <!-- El nav debe estar aquí, solito -->
-    <nav id="main-nav">
-        <button class="close-menu" onclick="toggleMenu()">✕</button>
-        <a href="#arrancadores">Arrancadores</a>
-        <a href="#mini-6ka">Riel DIN 6kA</a>
-        ...
-    </nav>
-    <div class="menu-overlay" id="overlay" onclick="toggleMenu()"></div>
-</header>
+        
+        <nav id="main-nav">
+            <button class="close-menu" onclick="toggleMenu()">✕</button>
+            <a href="#mini-6ka" onclick="toggleMenu()">Riel DIN 6kA</a>
+            <a href="#asgard" onclick="toggleMenu()">Caja Moldeada</a>
+            <a href="#control" onclick="toggleMenu()">Control</a>
+            <a href="#botones" onclick="toggleMenu()">Botonería</a>
+        </nav>
+        <!-- Capa para cerrar el menú al tocar afuera -->
+        <div class="menu-overlay" id="overlay" onclick="toggleMenu()"></div>
+    </header>
 
     <main class="container">
 
-        <!-- SECCIÓN: ARRANCADORES -->
-        <div id="arrancadores" class="card" style="margin-top: 30px;">
+        <!-- 1. SECCIÓN ARRANCADORES -->
+        <div class="card" style="margin-top: 30px;">
             <div class="img-container">
                 <img src="arrancador.jpg" alt="Arrancador">
             </div>
@@ -49,57 +52,57 @@
             </div>
         </div>
 
-        <!-- SECCIÓN: MINI INTERRUPTORES -->
+        <!-- 2. SECCIÓN MINI INTERRUPTORES 6kA -->
         <h3 class="section-title" id="mini-6ka">Mini Interruptor 6kA</h3>
         <div class="grid-productos">
             <div class="card">
                 <div class="img-container"><img src="mini1p.jpg.jpg" alt="1P"></div>
-                <h4>1 Polo (1x2A a 1x63A)</h4>
+                <h4>Mini Interruptor 1x2A a 1x63A</h4>
                 <p class="modelo">Serie SDZD61 (6kA)</p>
                 <p class="precio">$3.70</p>
                 <button class="btn-cotizar" onclick="enviarWhatsApp('Mini 1P 6kA', '3.70')">Cotizar</button>
             </div>
             <div class="card">
                 <div class="img-container"><img src="mini2p.jpg" alt="2P"></div>
-                <h4>2 Polos (2x2A a 2x63A)</h4>
+                <h4>Mini Interruptor 2x2A a 2x63A</h4>
                 <p class="modelo">Serie SDZD62 (6kA)</p>
                 <p class="precio">$7.40</p>
                 <button class="btn-cotizar" onclick="enviarWhatsApp('Mini 2P 6kA', '7.40')">Cotizar</button>
             </div>
             <div class="card">
                 <div class="img-container"><img src="mini3p.jpg" alt="3P"></div>
-                <h4>3 Polos (3x2A a 3x63A)</h4>
+                <h4>Mini Interruptor 3x2A a 3x63A</h4>
                 <p class="modelo">Serie SDZD63 (6kA)</p>
                 <p class="precio">$11.00</p>
                 <button class="btn-cotizar" onclick="enviarWhatsApp('Mini 3P 6kA', '11.00')">Cotizar</button>
             </div>
         </div>
 
-        <!-- SECCIÓN: CAJA MOLDEADA ASGARD -->
-        <h3 class="section-title" id="asgard">Caja Moldeada (Serie ASGARD)</h3>
+        <!-- 3. SECCIÓN CAJA MOLDEADA ASGARD -->
+        <h3 class="section-title" id="asgard">Interruptores Caja Moldeada (Serie ASGARD)</h3>
         <div class="card-destacada-asgard">
             <div class="img-central-container">
-                <img src="asgard-serie.jpg" alt="Serie ASGARD Completa" class="img-asgard-destacada">
+                <img src="asgard-serie.jpg" alt="Serie ASGARD" class="img-asgard-destacada">
             </div>
             <div class="tabla-modelos-asgard">
-                <h4 class="titulo-tabla">Gama Completa: Desde 60kA hasta 85kA</h4>
+                <h4 class="titulo-tabla">Gama Completa: 60kA hasta 85kA</h4>
                 <div class="fila-tabla encabezado">
-                    <span>Rango Amperaje</span>
-                    <span>Capacidad Ruptura</span>
-                    <span>Precio Base</span>
+                    <span>Amperaje</span>
+                    <span>Ruptura</span>
+                    <span>Precio</span>
                     <span>Acción</span>
                 </div>
-                <div class="fila-tabla"><span>3x20A hasta 3x63A</span><span class="ruptura">60kA (220V)</span><span class="precio">$45.00</span><button class="btn-cotizar-tabla" onclick="enviarWhatsApp('Asgard 20-63A', '45.00')">Cotizar</button></div>
-                <div class="fila-tabla"><span>3x100A / 3x125A</span><span class="ruptura">39kA - 42kA</span><span class="precio">$63.00</span><button class="btn-cotizar-tabla" onclick="enviarWhatsApp('Asgard 100-125A', '63.00')">Cotizar</button></div>
-                <div class="fila-tabla"><span>3x150A hasta 3x250A</span><span class="ruptura">42kA Industrial</span><span class="precio">$70.00</span><button class="btn-cotizar-tabla" onclick="enviarWhatsApp('Asgard 150-250A', '70.00')">Cotizar</button></div>
-                <div class="fila-tabla"><span>3x300A hasta 3x500A</span><span class="ruptura">70kA Potencia</span><span class="precio">Desde $155.00</span><button class="btn-cotizar-tabla" onclick="enviarWhatsApp('Asgard 300-500A', '155.00')">Cotizar</button></div>
-                <div class="fila-tabla"><span>3x630A hasta 3x800A</span><span class="ruptura">85kA Extrema</span><span class="precio">Desde $204.00</span><button class="btn-cotizar-tabla" onclick="enviarWhatsApp('Asgard 630-800A', '204.00')">Cotizar</button></div>
-                <div class="fila-tabla"><span>3x1000A a 3x1600A</span><span class="ruptura">70kA Máxima</span><span class="precio">Desde $1,190.00</span><button class="btn-cotizar-tabla" onclick="enviarWhatsApp('Asgard 1000-1600A', '1190.00')">Cotizar</button></div>
+                <div class="fila-tabla"><span>3x20A a 3x63A</span><span class="ruptura">60kA (220V)</span><span class="precio">$45.00</span><button class="btn-cotizar-tabla" onclick="enviarWhatsApp('Asgard 20-63A', '45.00')">Cotizar</button></div>
+                <div class="fila-tabla"><span>3x100A / 125A</span><span class="ruptura">39kA - 42kA</span><span class="precio">$63.00</span><button class="btn-cotizar-tabla" onclick="enviarWhatsApp('Asgard 100-125A', '63.00')">Cotizar</button></div>
+                <div class="fila-tabla"><span>3x150A a 250A</span><span class="ruptura">42kA (Ind.)</span><span class="precio">$70.00</span><button class="btn-cotizar-tabla" onclick="enviarWhatsApp('Asgard 150-250A', '70.00')">Cotizar</button></div>
+                <div class="fila-tabla"><span>3x300A a 500A</span><span class="ruptura">70kA (Pot.)</span><span class="precio">$155.00</span><button class="btn-cotizar-tabla" onclick="enviarWhatsApp('Asgard 300-500A', '155.00')">Cotizar</button></div>
+                <div class="fila-tabla"><span>3x630A a 800A</span><span class="ruptura">85kA (Ext.)</span><span class="precio">$204.00</span><button class="btn-cotizar-tabla" onclick="enviarWhatsApp('Asgard 630-800A', '204.00')">Cotizar</button></div>
+                <div class="fila-tabla"><span>3x1000A a 1600A</span><span class="ruptura">70kA (Máx.)</span><span class="precio">$1,190.00</span><button class="btn-cotizar-tabla" onclick="enviarWhatsApp('Asgard 1000-1600A', '1190.00')">Cotizar</button></div>
             </div>
         </div>
 
-        <!-- SECCIÓN: COSMOS -->
-        <h3 class="section-title" id="cosmos">Interruptores al Aire (Serie COSMOS)</h3>
+        <!-- 4. SECCIÓN COSMOS -->
+        <h3 class="section-title">Interruptores al Aire (Serie COSMOS)</h3>
         <div class="grid-productos">
             <div class="card">
                 <div class="img-container"><img src="cosmos.jpg" alt="Cosmos"></div>
@@ -110,20 +113,20 @@
             </div>
         </div>
 
-        <!-- SECCIÓN: CONTROL -->
+        <!-- 5. SECCIÓN CONTROL (Guardamotores y Contactores) -->
         <h3 class="section-title" id="control">Control y Automatización</h3>
         <div class="grid-productos">
             <div class="card">
                 <div class="img-container"><img src="guardamotor.jpg" alt="Guardamotor"></div>
-                <h4>Guardamotor Trifásico SLS</h4>
-                <p class="modelo">Rangos: 0,63A hasta 32A</p>
+                <h4>Guardamotor Trifásico (0,63A - 32A)</h4>
+                <p class="modelo">Serie SLS Frame 32</p>
                 <p class="precio">Desde $35.00</p>
                 <button class="btn-cotizar" onclick="enviarWhatsApp('Guardamotor 32', '35.00')">Cotizar</button>
             </div>
             <div class="card">
                 <div class="img-container"><img src="contactor-sk1.jpg" alt="Contactor"></div>
-                <h4>Contactor Serie SK1</h4>
-                <p class="modelo">9A hasta 95A (Bobinas 110/220V)</p>
+                <h4>Contactor Serie SK1 (9A - 95A)</h4>
+                <p class="modelo">Bobinas 110V / 220V</p>
                 <p class="precio">Desde $10.00</p>
                 <button class="btn-cotizar" onclick="enviarWhatsApp('Contactor SK1', '10.00')">Cotizar</button>
             </div>
@@ -136,12 +139,12 @@
             </div>
         </div>
 
-        <!-- SECCIÓN: BOTONERÍA -->
+        <!-- 6. SECCIÓN BOTONERÍA -->
         <h3 class="section-title" id="botones">Pilotos y Botonería 22mm</h3>
         <div class="grid-productos">
             <div class="card">
                 <div class="img-container"><img src="piloto-led.jpg" alt="Piloto"></div>
-                <h4>Pilotos LED</h4>
+                <h4>Pilotos LED (R/V/A)</h4>
                 <p class="precio">$2.50</p>
                 <button class="btn-cotizar" onclick="enviarWhatsApp('Piloto LED', '2.50')">Cotizar</button>
             </div>
@@ -153,7 +156,7 @@
             </div>
             <div class="card">
                 <div class="img-container"><img src="pulsador-hongo.jpg" alt="Hongo"></div>
-                <h4>Pulsador Hongo</h4>
+                <h4>Pulsador Hongo 40mm</h4>
                 <p class="precio">$4.50</p>
                 <button class="btn-cotizar" onclick="enviarWhatsApp('Pulsador Hongo', '4.50')">Cotizar</button>
             </div>
@@ -161,24 +164,25 @@
 
     </main>
 
+    <!-- Botón WhatsApp -->
     <a href="https://wa.me/584224902710?text=Hola%20Alfa%203000" class="whatsapp-float" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
     </a>
 
     <footer>
-        <div class="container" style="text-align:center; padding:40px 20px;">
-            <p><strong>Alfa 3000</strong> | Caracas, Venezuela</p>
-        </div>
+        <p><strong>Alfa 3000</strong> | Caracas, Venezuela</p>
     </footer>
 
     <script>
         const MiTelefono = "584224902710";
+        
         function toggleMenu() {
             const nav = document.getElementById('main-nav');
             const overlay = document.getElementById('overlay');
             nav.classList.toggle('active');
             overlay.classList.toggle('active');
         }
+
         function enviarWhatsApp(p, pre) {
             const m = encodeURIComponent(`Hola Alfa 3000, solicito cotización de: ${p} ($${pre}).`);
             window.open(`https://wa.me/${MiTelefono}?text=${m}`, '_blank');
