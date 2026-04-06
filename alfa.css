@@ -1,4 +1,6 @@
-/* Reset general */
+/* =========================================
+   1. RESET Y BASES
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -13,380 +15,224 @@ body {
 }
 
 .container {
-    width: 85%;
+    width: 90%;
     margin: auto;
     overflow: hidden;
 }
 
-/* Header */
+/* =========================================
+   2. HEADER Y MENÚ HAMBURGUESA
+   ========================================= */
 header {
-    background: #003366; /* Azul Oscuro */
+    background: #003366;
     color: #ffffff;
-    padding-top: 30px;
-    min-height: 100px;
-    border-bottom: #00a8e8 3px solid; /* Acento Azul Claro */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: #00a8e8 3px solid;
 }
 
-#branding h1 {
-    margin: 0;
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+}
+
+.logo-area h1 {
+    font-size: 24px;
     text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
+.logo-area p {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* Botón Hamburguesa (Solo móvil) */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Navegación */
 nav {
-    float: right;
-    margin-top: -40px;
-}
-
-nav ul {
-    list-style: none;
-}
-
-nav li {
-    display: inline;
-    margin-left: 20px;
+    display: flex;
+    background: #002b55;
 }
 
 nav a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-header nav {
-    background-color: #003366;
-    padding: 10px 0;
-    /* ESTO ES LO QUE ARREGLA EL AMONTONAMIENTO */
-    display: flex;
-    overflow-x: auto; /* Permite deslizar si no cabe */
-    white-space: nowrap; /* Evita que las palabras bajen a la siguiente línea */
-    -webkit-overflow-scrolling: touch; /* Hace que el deslizamiento sea suave en iPhone */
-    scrollbar-width: none; /* Esconde la barrita en Firefox */
-}
-
-/* Esconde la barrita de desplazamiento en Chrome/Android */
-header nav::-webkit-scrollbar {
-    display: none;
-}
-
-header nav a {
     color: white;
     text-decoration: none;
-    padding: 10px 15px;
-    font-size: 14px;
+    padding: 15px 20px;
     font-weight: bold;
-    display: inline-block; /* Importante para el deslizamiento */
+    font-size: 14px;
+    transition: 0.3s;
 }
 
-
-/* Hero Section */
-#hero {
-    min-height: 250px;
-    background: linear-gradient(rgba(0,51,102,0.8), rgba(0,51,102,0.8)), 
-                url('https://images.unsplash.com/photo-1558441719-ffb4d035186f?q=80&w=1000') no-repeat center center/cover;
-    text-align: center;
-    color: #fff;
-    padding-top: 80px;
+nav a:hover {
+    background: #00a8e8;
 }
 
-#hero h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+.close-menu { display: none; } /* Escondido en PC */
+
+/* =========================================
+   3. DISEÑO RESPONSIVO (CELULARES)
+   ========================================= */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        right: -260px; /* Escondido a la derecha */
+        width: 260px;
+        height: 100vh;
+        background-color: #001a33;
+        flex-direction: column;
+        padding-top: 80px;
+        transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+        box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    }
+
+    nav.active {
+        right: 0; /* Aparece */
+    }
+
+    nav a {
+        width: 100%;
+        border-bottom: 1px solid #003366;
+        padding: 20px;
+    }
+
+    .close-menu {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 25px;
+    }
+
+    .menu-overlay.active {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.6);
+        z-index: 999;
+    }
+
+    .grid-productos {
+        grid-template-columns: 1fr !important;
+    }
 }
 
-/* Productos Grid */
+/* =========================================
+   4. TARJETAS DE PRODUCTOS
+   ========================================= */
 .section-title {
     text-align: center;
-    margin: 40px 0;
+    margin: 40px 0 20px;
     color: #003366;
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 .grid-productos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
     margin-bottom: 50px;
 }
 
 .card {
     background: #fff;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     text-align: center;
-    transition: transform 0.3s ease;
+    transition: 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
-.img-placeholder {
+.img-container {
     width: 100%;
-    height: 180px;
-    background: #e0e0e0;
+    height: 200px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    color: #888;
+    align-items: center;
+    background-color: #f9f9f9;
+    border-radius: 8px;
     margin-bottom: 15px;
-    border-radius: 5px;
-    font-weight: bold;
 }
 
-.card h4 {
-    margin-bottom: 5px;
-    color: #003366;
-}
-
-.modelo {
-    font-size: 0.9rem;
-    color: #666;
+.img-container img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
 }
 
 .precio {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: #d32f2f;
     font-weight: bold;
     margin: 10px 0;
 }
 
 .btn-cotizar {
-    background: #25d366; /* Color WhatsApp */
+    background: #25d366;
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 12px 25px;
+    border-radius: 50px;
     cursor: pointer;
     font-weight: bold;
-}
-
-.img-container {
-    width: 100%;       /* Ocupa todo el ancho de la tarjeta */
-    height: 200px;     /* ALTURA FIJA: Ajusta este número a tu gusto */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;  /* Si la foto es muy grande, corta lo que sobra */
-    background-color: #f9f9f9; /* Un gris clarito de fondo por si la foto es pequeña */
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-.img-container img {
-    max-width: 90%;    /* Que no toque los bordes del cuadro */
-    max-height: 90%;   /* Que no se salga por arriba o abajo */
-    object-fit: contain; /* Mantiene la forma original de la foto (no la estira) */
-}
-
-.grid-detalles {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Esto crea las 2 columnas que marcaste en amarillo */
-    gap: 20px;                      /* Espacio entre las columnas */
-    padding: 15px;
-    align-items: start;             /* Alinea el contenido arriba */
-}
-
-.info-producto {
-    text-align: center;             /* Centra el texto dentro de su columna */
-}
-
-/* Para que en celulares no se vea muy apretado, podemos hacer que se pongan uno arriba del otro solo en pantallas pequeñas */
-@media (max-width: 480px) {
-    .grid-detalles {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* TARJETA DESTACADA ÚNICA */
-.card-destacada-asgard {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
-    overflow: hidden;
-    padding: 20px;
-    display: flex;
-    flex-direction: column; /* Imagen arriba, tabla abajo */
-    align-items: center;    /* Centra todo horizontalmente */
-}
-
-/* CONTENEDOR IMAGEN CENTRAL */
-.img-central-container {
     width: 100%;
-    max-width: 400px; /* Limita el ancho para que no sea gigante */
-    height: auto;
-    margin-bottom: 25px; /* Espacio con la tabla */
-    display: flex;
-    justify-content: center;
+    transition: 0.3s;
 }
 
-.img-asgard-destacada {
-    width: 100%;
-    height: auto;
-    object-fit: contain; /* Mantiene la forma del breaker */
+.btn-cotizar:hover {
+    background: #128c7e;
 }
 
-/* TABLA DE MODELOS */
-.tabla-modelos-asgard {
-    width: 100%;
-    border-top: 2px solid #eee;
-    padding-top: 15px;
-}
-
-.titulo-tabla {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 1.2em;
-}
-
-/* FILAS DE LA TABLA */
-.fila-tabla {
-    display: grid;
-    grid-template-columns: 2fr 2fr 1fr auto; /* Anchos de columna */
-    gap: 15px;
-    align-items: center;
-    padding: 12px 15px;
-    border-bottom: 1px solid #eee;
-    transition: background 0.2s;
-}
-
-/* EFECTO HOVER PARA QUE SE SEPA CUÁL FILA ESTÁ MIRANDO */
-.fila-tabla:not(.encabezado):hover {
-    background-color: #f9f9f9;
-}
-
-/* ESTILO ENCABEZADO */
-.fila-tabla.encabezado {
-    background-color: #333;
-    color: #fff;
-    font-weight: bold;
-    border-radius: 6px;
-    border-bottom: none;
-}
-
-/* ESTILOS DE TEXTO DENTRO DE LA TABLA */
-.nombre-modelo {
-    font-weight: bold;
-    color: #222;
-}
-
-.ruptura {
-    color: #666;
-    font-size: 0.9em;
-}
-
-.precio {
-    color: #e44d26; /* Tu color de precio */
-    font-weight: bold;
-    font-size: 1.1em;
-}
-
-/* BOTÓN DE COTIZAR PEQUEÑO PARA LA TABLA */
-.btn-cotizar-tabla {
-    background-color: #25d366;
-    color: #fff;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: background 0.2s;
-}
-
-.btn-cotizar-tabla:hover {
-    background-color: green;
-}
-
-/* AJUSTE PARA CELULARES (HACER LA TABLA SCOLLABLE SI ES MUY ANCHA) */
-@media (max-width: 600px) {
-    .tabla-modelos-asgard {
-        overflow-x: auto; /* Permite scroll horizontal en móvil */
-    }
-    .fila-tabla {
-        min-width: 500px; /* Ancho mínimo para que no se amontone en móvil */
-    }
-}
-
-/* Contenedor del botón fijo */
+/* =========================================
+   5. BOTÓN FLOTANTE WHATSAPP
+   ========================================= */
 .whatsapp-float {
     position: fixed;
     width: 60px;
     height: 60px;
-    bottom: 40px;
-    right: 40px;
+    bottom: 30px;
+    right: 30px;
     background-color: #25d366;
-    color: #FFF;
     border-radius: 50px;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 2px 2px 3px #999;
-    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    box-shadow: 2px 5px 15px rgba(0,0,0,0.2);
+    z-index: 2000;
+    transition: 0.3s;
 }
 
 .whatsapp-float:hover {
-    background-color: #128c7e;
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(10deg);
 }
 
 .whatsapp-icon {
     width: 35px;
     height: 35px;
-}
-
-/* Efecto al pasar el mouse */
-.btn-whatsapp-fijo:hover {
-    background-color: #128c7e;
-    transform: scale(1.1); /* Crece un poquito */
-}
-
-/* Estilo de la imagen (Logo) */
-.btn-whatsapp-fijo img {
-    width: 28px;
-    height: 28px;
-    margin-right: 10px;
-}
-
-/* Estilo del texto */
-.btn-whatsapp-fijo span {
-    font-family: 'Arial', sans-serif;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-/* --- AJUSTES PARA CELULARES --- */
-@media (max-width: 600px) {
-    .container {
-        width: 95%; /* Que use casi toda la pantalla */
-        padding: 10px;
-    }
-
-    .grid-productos {
-        display: grid;
-        grid-template-columns: 1fr !important; /* Fuerza a que sea 1 sola columna */
-        gap: 20px;
-    }
-
-    header h1 {
-        font-size: 1.8rem; /* Letras un poco más pequeñas para que quepan */
-    }
-
-    nav ul {
-        flex-direction: column; /* Menú en lista hacia abajo */
-        text-align: center;
-    }
-
-    nav ul li {
-        margin: 5px 0;
-    }
-    
-    .card img {
-        max-width: 100%; /* Que la imagen no se salga del cuadro */
-        height: auto;
-    }
 }
