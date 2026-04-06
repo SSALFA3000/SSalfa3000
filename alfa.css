@@ -150,6 +150,72 @@ nav a:hover {
 }
 
 /* =========================================
+   DISEÑO DE LA TARJETA DOBLE (BASE / PC)
+   ========================================= */
+
+/* En pantallas grandes (PC), usamos un grid de 3 columnas */
+@media (min-width: 992px) {
+    
+    .card-doble {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr; /* Columna Izq - Imagen - Columna Der */
+        align-items: center; /* Centra todo verticalmente */
+        gap: 30px; /* Espacio entre columnas */
+        padding: 40px;
+    }
+
+    /* La imagen central ocupa la columna del medio */
+    .card-doble .img-container {
+        grid-column: 2;
+        margin-bottom: 0; /* Quitamos margen inferior en PC */
+    }
+
+    /* El contenedor de textos ocupa las columnas laterales */
+    .grid-detalles-pc {
+        display: contents; /* Esto hace que los hijos directos (info-producto) se comporten como si estuvieran directamente en card-doble */
+    }
+
+    /* Bloque Izquierdo (220V) */
+    .info-izq {
+        grid-column: 1; /* Primera columna */
+        text-align: right; /* Alineamos el texto a la derecha, hacia la imagen */
+    }
+
+    /* Bloque Derecho (440V) */
+    .info-der {
+        grid-column: 3; /* Tercera columna */
+        text-align: left; /* Alineamos el texto a la izquierda */
+    }
+}
+
+
+/* =========================================
+   AJUSTE PARA CELULARES (Mantiene la columna única)
+   ========================================= */
+@media (max-width: 991px) {
+    
+    .card-doble {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    /* En móvil, los textos vuelven a ser una lista vertical */
+    .grid-detalles-pc {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        text-align: center; /* Centramos el texto en móvil */
+    }
+
+    .info-producto {
+        width: 100%;
+    }
+}
+
+/* =========================================
    4. PRODUCTOS GRID (DISEÑO ORIGINAL QUE TE GUSTABA)
    ========================================= */
 .section-title {
