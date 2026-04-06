@@ -21,14 +21,14 @@ body {
 }
 
 /* =========================================
-   2. HEADER Y MENÚ HAMBURGUESA
+   2. HEADER Y MENÚ (ESTILO BASE / PC)
    ========================================= */
 header {
     background: #003366;
     color: #ffffff;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1000; /* Asegura que el header esté arriba */
     border-bottom: #00a8e8 3px solid;
 }
 
@@ -50,20 +50,22 @@ header {
     opacity: 0.8;
 }
 
-/* Botón Hamburguesa (Solo móvil) */
+/* Botón Hamburguesa (Escondido en PC) */
 .menu-toggle {
     display: none;
     background: none;
     border: none;
     color: white;
-    font-size: 30px;
+    font-size: 32px;
     cursor: pointer;
+    line-height: 1;
 }
 
-/* Navegación */
+/* Navegación (Diseño para Computadora) */
 nav {
     display: flex;
     background: #002b55;
+    justify-content: center;
 }
 
 nav a {
@@ -79,37 +81,43 @@ nav a:hover {
     background: #00a8e8;
 }
 
-.close-menu { display: none; } /* Escondido en PC */
+.close-menu { display: none; }
 
 /* =========================================
-   3. DISEÑO RESPONSIVO (CELULARES)
+   3. DISEÑO RESPONSIVO (CELULARES - CORREGIDO)
    ========================================= */
 @media (max-width: 768px) {
     .menu-toggle {
-        display: block;
+        display: block; /* Aparece el botón ☰ */
     }
 
     nav {
         position: fixed;
         top: 0;
-        right: -260px; /* Escondido a la derecha */
-        width: 260px;
+        right: -280px; /* Escondido a la derecha */
+        width: 280px;
         height: 100vh;
         background-color: #001a33;
         flex-direction: column;
+        justify-content: flex-start;
         padding-top: 80px;
-        transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
-        box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+        transition: 0.4s ease-in-out;
+        z-index: 2000; /* Capa más alta para que sea seleccionable */
+        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
     }
 
     nav.active {
-        right: 0; /* Aparece */
+        right: 0; /* Entra a la pantalla */
     }
 
+    /* Ajuste para que los enlaces se puedan tocar */
     nav a {
+        display: block !important;
         width: 100%;
+        padding: 20px 30px;
+        font-size: 18px; /* Letra más grande para dedos */
         border-bottom: 1px solid #003366;
-        padding: 20px;
+        text-align: left;
     }
 
     .close-menu {
@@ -120,17 +128,20 @@ nav a:hover {
         background: none;
         border: none;
         color: white;
-        font-size: 25px;
+        font-size: 30px;
+        cursor: pointer;
     }
 
+    /* El oscurecedor de fondo */
     .menu-overlay.active {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0,0,0,0.6);
-        z-index: 999;
+        background: rgba(0,0,0,0.7);
+        z-index: 1500; /* Entre el contenido y el menú */
+        display: block;
     }
 
     .grid-productos {
@@ -139,7 +150,7 @@ nav a:hover {
 }
 
 /* =========================================
-   4. TARJETAS DE PRODUCTOS
+   4. TARJETAS DE PRODUCTOS Y TABLAS
    ========================================= */
 .section-title {
     text-align: center;
@@ -162,11 +173,6 @@ nav a:hover {
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     text-align: center;
     transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
 .img-container {
@@ -202,11 +208,22 @@ nav a:hover {
     cursor: pointer;
     font-weight: bold;
     width: 100%;
-    transition: 0.3s;
 }
 
-.btn-cotizar:hover {
-    background: #128c7e;
+/* Estilos de la tabla Asgard */
+.fila-tabla {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr auto;
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    align-items: center;
+}
+
+.fila-tabla.encabezado {
+    background: #333;
+    color: white;
+    font-weight: bold;
 }
 
 /* =========================================
@@ -223,13 +240,13 @@ nav a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 2px 5px 15px rgba(0,0,0,0.2);
-    z-index: 2000;
+    box-shadow: 2px 5px 15px rgba(0,0,0,0.3);
+    z-index: 3000; /* Siempre visible sobre todo */
     transition: 0.3s;
 }
 
 .whatsapp-float:hover {
-    transform: scale(1.1) rotate(10deg);
+    transform: scale(1.1);
 }
 
 .whatsapp-icon {
