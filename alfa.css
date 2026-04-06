@@ -1,5 +1,5 @@
 /* =========================================
-   1. RESET Y BASES
+   1. RESET GENERAL (Tal cual estaba antes)
    ========================================= */
 * {
     margin: 0;
@@ -15,20 +15,20 @@ body {
 }
 
 .container {
-    width: 90%;
+    width: 85%; /* Mismo ancho de antes */
     margin: auto;
     overflow: hidden;
 }
 
 /* =========================================
-   2. HEADER Y MENÚ (ESTILO BASE / PC)
+   2. HEADER Y MENÚ HAMBURGUESA (CON CORRECCIÓN DE CLIC)
    ========================================= */
 header {
     background: #003366;
     color: #ffffff;
-    position: sticky;
+    position: sticky; /* Se queda pegado arriba */
     top: 0;
-    z-index: 1000; /* Asegura que el header esté arriba */
+    z-index: 1000; /* Capa alta */
     border-bottom: #00a8e8 3px solid;
 }
 
@@ -50,18 +50,17 @@ header {
     opacity: 0.8;
 }
 
-/* Botón Hamburguesa (Escondido en PC) */
+/* Botón Hamburguesa ☰ */
 .menu-toggle {
-    display: none;
+    display: none; /* Escondido en PC */
     background: none;
     border: none;
     color: white;
-    font-size: 32px;
+    font-size: 30px;
     cursor: pointer;
-    line-height: 1;
 }
 
-/* Navegación (Diseño para Computadora) */
+/* Navegación (PC y Base) */
 nav {
     display: flex;
     background: #002b55;
@@ -81,41 +80,43 @@ nav a:hover {
     background: #00a8e8;
 }
 
-.close-menu { display: none; }
+.close-menu { display: none; } /* Escondido en PC */
 
 /* =========================================
-   3. DISEÑO RESPONSIVO (CELULARES - CORREGIDO)
+   3. DISEÑO RESPONSIVO (SOLO PARA CELULARES)
    ========================================= */
 @media (max-width: 768px) {
-    .menu-toggle {
-        display: block; /* Aparece el botón ☰ */
-    }
+    .menu-toggle { display: block; } /* Aparece ☰ */
 
     nav {
         position: fixed;
         top: 0;
-        right: -280px; /* Escondido a la derecha */
-        width: 280px;
+        right: -260px; /* Escondido a la derecha */
+        width: 260px;
         height: 100vh;
         background-color: #001a33;
         flex-direction: column;
         justify-content: flex-start;
         padding-top: 80px;
         transition: 0.4s ease-in-out;
-        z-index: 2000; /* Capa más alta para que sea seleccionable */
         box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+        
+        /* ESTA ES LA CORRECCIÓN PARA QUE SE PUEDA SELECCIONAR */
+        z-index: 2000; /* Capa más alta que el header */
+        display: none; /* Oculto por defecto */
     }
 
     nav.active {
-        right: 0; /* Entra a la pantalla */
+        right: 0; /* Aparece */
+        display: flex; /* Se muestra */
     }
 
-    /* Ajuste para que los enlaces se puedan tocar */
+    /* Ajuste para toques con el dedo */
     nav a {
         display: block !important;
         width: 100%;
         padding: 20px 30px;
-        font-size: 18px; /* Letra más grande para dedos */
+        font-size: 16px;
         border-bottom: 1px solid #003366;
         text-align: left;
     }
@@ -128,29 +129,28 @@ nav a:hover {
         background: none;
         border: none;
         color: white;
-        font-size: 30px;
-        cursor: pointer;
+        font-size: 25px;
     }
 
-    /* El oscurecedor de fondo */
+    /* Fondo oscuro */
     .menu-overlay.active {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0,0,0,0.7);
-        z-index: 1500; /* Entre el contenido y el menú */
-        display: block;
+        background: rgba(0,0,0,0.6);
+        z-index: 1500;
     }
 
+    /* Grid de productos en celular: 1 columna */
     .grid-productos {
         grid-template-columns: 1fr !important;
     }
 }
 
 /* =========================================
-   4. TARJETAS DE PRODUCTOS Y TABLAS
+   4. PRODUCTOS GRID (DISEÑO ORIGINAL QUE TE GUSTABA)
    ========================================= */
 .section-title {
     text-align: center;
@@ -161,35 +161,41 @@ nav a:hover {
 
 .grid-productos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Mismo valor de antes */
+    gap: 30px;
     margin-bottom: 50px;
 }
 
 .card {
     background: #fff;
     padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-radius: 8px; /* Borde original */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra original */
     text-align: center;
-    transition: 0.3s;
+    transition: transform 0.3s ease;
 }
 
+.card:hover {
+    transform: translateY(-10px); /* Efecto original */
+}
+
+/* CONTENEDOR FOTOS (EL DISEÑO QUE HACE QUE SE VEAN PERFECTAS) */
 .img-container {
     width: 100%;
-    height: 200px;
+    height: 200px; /* Altura original */
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
     background-color: #f9f9f9;
-    border-radius: 8px;
+    border-radius: 5px;
     margin-bottom: 15px;
 }
 
 .img-container img {
     max-width: 90%;
     max-height: 90%;
-    object-fit: contain;
+    object-fit: contain; /* No estira la foto */
 }
 
 .precio {
@@ -203,31 +209,44 @@ nav a:hover {
     background: #25d366;
     color: white;
     border: none;
-    padding: 12px 25px;
-    border-radius: 50px;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    width: 100%;
+    width: 100%; /* Ancho total */
 }
 
-/* Estilos de la tabla Asgard */
-.fila-tabla {
-    display: grid;
-    grid-template-columns: 2fr 2fr 1fr auto;
-    gap: 10px;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
+/* =========================================
+   5. TABLA ASGARD (Mismo diseño de antes)
+   ========================================= */
+.card-destacada-asgard {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
+.fila-tabla {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr auto;
+    gap: 15px;
+    align-items: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+}
+
 .fila-tabla.encabezado {
-    background: #333;
-    color: white;
+    background-color: #333;
+    color: #fff;
     font-weight: bold;
 }
 
 /* =========================================
-   5. BOTÓN FLOTANTE WHATSAPP
+   6. BOTÓN FLOTANTE WHATSAPP (Original)
    ========================================= */
 .whatsapp-float {
     position: fixed;
@@ -240,12 +259,13 @@ nav a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 2px 5px 15px rgba(0,0,0,0.3);
-    z-index: 3000; /* Siempre visible sobre todo */
+    box-shadow: 2px 2px 3px #999;
+    z-index: 3000; /* Máxima prioridad */
     transition: 0.3s;
 }
 
 .whatsapp-float:hover {
+    background-color: #128c7e;
     transform: scale(1.1);
 }
 
