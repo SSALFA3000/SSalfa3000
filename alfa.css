@@ -319,3 +319,91 @@ nav a:hover {
     width: 35px;
     height: 35px;
 }
+
+/* ==========================================
+   ESTILOS RESPONSIVOS PARA CELULARES
+   ========================================== */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Ajuste general del contenedor principal */
+    .container {
+        padding: 10px;
+        width: 100%;
+        overflow-x: hidden; /* Evita el desborde horizontal */
+    }
+
+    /* 2. Sección Arrancadores (Se vuelve vertical) */
+    .card-especial {
+        display: flex;
+        flex-direction: column; /* Apila los elementos uno abajo del otro */
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+        padding: 15px;
+    }
+
+    .info-producto.izq, 
+    .info-producto.der {
+        width: 100%;
+        order: 2; /* Pone los textos y botones abajo */
+    }
+
+    .img-container {
+        width: 100%;
+        max-width: 250px;
+        order: 1; /* Pone la foto del arrancador arriba en el centro */
+    }
+
+    .img-container img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* 3. Rejilla de Productos (Fuerza 1 sola columna en celulares) */
+    .grid-productos {
+        display: grid;
+        grid-template-columns: 1fr !important; /* Una sola tarjeta por fila */
+        gap: 15px;
+    }
+
+    /* 4. Sección Caja Moldeada (Asgard) y su Tabla */
+    .card-destacada-asgard {
+        display: flex;
+        flex-direction: column; /* La imagen se pone arriba y la tabla abajo */
+        gap: 20px;
+    }
+
+    .img-central-container {
+        width: 100%;
+        text-align: center;
+    }
+
+    .img-asgard-destacada {
+        max-width: 200px;
+        height: auto;
+    }
+
+    /* Transformación de la tabla rígida para que no se corte */
+    .tabla-modelos-asgard {
+        width: 100%;
+        font-size: 14px; /* Achica un poco la letra para que quepa */
+    }
+
+    .fila-tabla {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 0.8fr 1fr; /* Distribuye mejor el espacio */
+        gap: 5px;
+        padding: 10px 5px;
+        align-items: center;
+    }
+
+    .fila-tabla span {
+        white-space: normal; /* Permite que el texto salte de línea si es largo */
+        word-break: break-word;
+    }
+
+    .btn-cotizar-tabla {
+        padding: 6px 8px;
+        font-size: 12px; /* Botón de cotizar más compacto en la tabla */
+    }
+}
