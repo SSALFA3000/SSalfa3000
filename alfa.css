@@ -75,7 +75,7 @@ nav a:hover {
 }
 
 /* Ocultos en PC por defecto */
-.menu-toggle, .close-menu, .menu-overlay { 
+.menu-toggle {display: none;}, .close-menu {display: none;}, .menu-overlay { 
     display: none; 
 }
 
@@ -267,39 +267,56 @@ nav a:hover {
    ========================================================================== */
 @media screen and (max-width: 768px) {
     
-    .container {
-        padding: 10px;
+    /* 1. Evitar que toda la página ruede hacia los lados */
+    html, body {
         width: 100%;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
     }
 
-    /* --- CORRECCIÓN CRÍTICA DE NAVEGACIÓN MOVIL --- */
-    .menu-toggle {
-        display: block; /* Muestra el botón de 3 rayas */
-    }
-
+    /* 2. Ocultar el menú de navegación y volverlo lateral */
     #main-nav {
         position: fixed;
         top: 0;
-        right: -100%; /* Esconde el menú completamente a la derecha */
-        width: 260px;
+        right: -100%; /* Lo esconde completamente a la derecha */
+        width: 250px; /* Ancho fijo para el menú del celular */
         height: 100vh;
-        background-color: #002b55;
+        background-color: #002855; /* Usa tu color azul oscuro */
+        display: flex;
         flex-direction: column;
-        justify-content: flex-start;
         padding: 80px 20px 20px 20px;
-        gap: 10px;
-        transition: right 0.3s ease-in-out;
-        z-index: 2000;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+        gap: 15px;
+        transition: right 0.3s ease; /* Efecto suave al abrir/cerrar */
+        z-index: 1000; /* Lo pone por encima de todo */
     }
 
-    /* JavaScript activará esta clase al presionar ☰ */
+    /* Cuando el JS le agregue la clase 'active', el menú se desliza a la pantalla */
     #main-nav.active {
         right: 0;
     }
 
+    /* Estilo de los enlaces dentro del menú móvil */
+    #main-nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Mostrar los botones de abrir y cerrar menú en el celular */
+    .menu-toggle {
+        display: block !important; /* Muestra las 3 rayas ☰ */
+        background: none;
+        border: none;
+        color: white;
+        font-size: 28px;
+        cursor: pointer;
+    }
+
     .close-menu {
-        display: block; /* Muestra la X */
+        display: block !important; /* Muestra la equis ✕ */
         position: absolute;
         top: 20px;
         right: 20px;
@@ -310,14 +327,7 @@ nav a:hover {
         cursor: pointer;
     }
 
-    #main-nav a {
-        width: 100%;
-        text-align: left;
-        padding: 12px 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    /* Capa oscura de fondo */
+    /* Capa oscura de fondo al abrir el menú */
     .menu-overlay {
         position: fixed;
         top: 0;
@@ -325,71 +335,30 @@ nav a:hover {
         width: 100vw;
         height: 100vh;
         background: rgba(0, 0, 0, 0.5);
-        z-index: 1999;
+        display: none;
+        z-index: 999;
     }
-    
+
     .menu-overlay.active {
         display: block;
     }
 
-    /* --- APILAMIENTO DE TARJETAS DOBLES Y ESPECIALES --- */
-    .card-especial, .card-doble {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center;
-        text-align: center;
-        padding: 20px !important;
-        gap: 20px;
-    }
-
-    .card-especial .img-container, .card-doble .img-container {
-        order: 1; /* Pone la imagen en el tope de la tarjeta */
-        width: 100%;
-        max-width: 220px;
-        margin-bottom: 10px;
-    }
-
-    .grid-detalles-pc {
+    /* 3. Ajustar la imagen del interruptor para que no empuje hacia afuera */
+    .card-especial {
         display: flex;
         flex-direction: column;
-        gap: 25px;
         width: 100%;
-        order: 2; /* Los datos técnicos bajan */
+        max-width: 100%;
+        box-sizing: border-box; /* Asegura que el padding no sume ancho */
+        padding: 15px;
+        margin: 0 auto;
     }
 
-    .info-producto.izq, .info-producto.der, .info-izq, .info-der {
-        text-align: center !important;
+    /* Asegura que la imagen no exceda el ancho del contenedor */
+    .card-especial img {
         width: 100%;
-    }
-
-    /* --- FORZAR UNA SOLA COLUMNA EN EL GRID --- */
-    .grid-productos {
-        grid-template-columns: 1fr !important;
-        gap: 20px;
-    }
-
-    /* --- TABLA RESPONSIVA ASGARD --- */
-    .card-destacada-asgard {
-        padding: 10px;
-    }
-
-    .tabla-modelos-asgard {
-        font-size: 13px;
-    }
-
-    .fila-tabla {
-        grid-template-columns: 1.2fr 1fr 0.8fr 1fr; /* Redistribuye el espacio perfectamente */
-        gap: 5px;
-        padding: 10px 5px;
-    }
-
-    .fila-tabla span {
-        white-space: normal;
-        word-break: break-word;
-    }
-
-    .btn-cotizar-tabla {
-        padding: 6px 6px;
-        font-size: 11px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
     }
 }
