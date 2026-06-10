@@ -75,8 +75,9 @@ nav a:hover {
 }
 
 /* Ocultos en PC por defecto */
-.menu-toggle {display: none;}, .close-menu {display: none;}, .menu-overlay { 
-    display: none; 
+
+   .close-menu, .menu-toggle, .menu-overlay {
+    display: none !important;
 }
 
 /* =========================================
