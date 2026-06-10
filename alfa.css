@@ -267,15 +267,38 @@ nav a:hover {
    ========================================================================== */
 @media screen and (max-width: 768px) {
     
-    /* 1. Evitar que toda la página ruede hacia los lados */
-    html, body {
+    /* 1. Ajuste general del contenedor principal y evitar desbordes */
+    .container {
+        padding: 10px;
         width: 100%;
-        overflow-x: hidden;
-        margin: 0;
-        padding: 0;
+        overflow-x: hidden; /* Evita que la pantalla se desplace hacia los lados */
     }
 
-    /* 2. Ocultar el menú de navegación y volverlo lateral */
+    /* 2. Sección Arrancadores y Caja Moldeada (Asgard): Se apilan verticalmente */
+    .card-especial, .card-destacada-asgard {
+        display: flex;
+        flex-direction: column; /* Apila los elementos uno abajo del otro */
+        align-items: center;
+        text-align: center;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    /* 3. Corrección crítica de la imagen: Responsiva y centrada */
+    .img-container {
+        width: 100%;
+        max-width: 250px; /* Tamaño máximo para que no se vea gigante */
+        height: auto;
+        margin: 0 auto;
+        order: 1; /* Pone la imagen en el tope de la tarjeta */
+    }
+
+    .img-container img, .img-asgard-destacada {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* 4. Ocultar el menú de navegación horizontal y volverlo lateral */
     #main-nav {
         position: fixed;
         top: 0;
@@ -341,24 +364,5 @@ nav a:hover {
 
     .menu-overlay.active {
         display: block;
-    }
-
-    /* 3. Ajustar la imagen del interruptor para que no empuje hacia afuera */
-    .card-especial {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box; /* Asegura que el padding no sume ancho */
-        padding: 15px;
-        margin: 0 auto;
-    }
-
-    /* Asegura que la imagen no exceda el ancho del contenedor */
-    .card-especial img {
-        width: 100%;
-        height: auto;
-        display: block;
-        margin: 0 auto;
     }
 }
