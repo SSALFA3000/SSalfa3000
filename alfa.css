@@ -1,10 +1,15 @@
 /* =========================================
-   1. RESET GENERAL (Tal cual estaba antes)
+   1. RESET GENERAL Y CONTENEDOR PRINCIPAL
    ========================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden; /* Candado definitivo para evitar desborde a la derecha */
 }
 
 body {
@@ -17,18 +22,17 @@ body {
 .container {
     width: 85%; /* Mismo ancho de antes */
     margin: auto;
-    overflow: hidden;
 }
 
 /* =========================================
-   2. HEADER Y MENÚ HAMBURGUESA (CON CORRECCIÓN DE CLIC)
+   2. HEADER Y MENÚ (PC Y MÓVIL INTEGRADO)
    ========================================= */
 header {
     background: #003366;
     color: #ffffff;
-    position: sticky; /* Se queda pegado arriba */
+    position: sticky;
     top: 0;
-    z-index: 1000; /* Capa alta */
+    z-index: 1000;
     border-bottom: #00a8e8 3px solid;
 }
 
@@ -50,17 +54,7 @@ header {
     opacity: 0.8;
 }
 
-/* Botón Hamburguesa ☰ */
-.menu-toggle {
-    display: none; /* Escondido en PC */
-    background: none;
-    border: none;
-    color: white;
-    font-size: 30px;
-    cursor: pointer;
-}
-
-/* Navegación (PC y Base) */
+/* Menú de Navegación por defecto (PC) */
 nav {
     display: flex;
     background: #002b55;
@@ -80,123 +74,58 @@ nav a:hover {
     background: #00a8e8;
 }
 
-.close-menu { display: none; } /* Escondido en PC */
+/* Ocultos en PC por defecto */
+.menu-toggle, .close-menu, .menu-overlay { 
+    display: none; 
+}
 
 /* =========================================
-   3. DISEÑO RESPONSIVO (SOLO PARA CELULARES)
+   3. SECCIÓN ESPECIAL / DOBLE (ARRANCADORES)
    ========================================= */
+
+/* Vista en computadoras grandes */
 @media (min-width: 769px) {
-    .card-especial {
+    .card-especial, .card-doble {
         display: grid !important;
         grid-template-columns: 1fr auto 1fr; /* Izquierda - Imagen - Derecha */
         align-items: center;
-        gap: 20px;
+        gap: 30px;
         padding: 40px !important;
         max-width: 1000px;
         margin: 20px auto;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
-    .card-especial .img-container {
-        width: 300px;
+    .card-especial .img-container, .card-doble .img-container {
+        width: 250px;
         margin: 0;
+        grid-column: 2;
     }
 
-    .info-producto.izq {
+    .grid-detalles-pc {
+        display: contents;
+    }
+
+    .info-producto.izq, .info-izq {
+        grid-column: 1;
         text-align: right; /* Texto hacia la imagen */
     }
 
-    .info-producto.der {
+    .info-producto.der, .info-der {
+        grid-column: 3;
         text-align: left; /* Texto hacia la imagen */
     }
 
-    /* Ajuste de botones para que no ocupen todo el ancho en PC */
-    .card-especial .btn-cotizar {
+    .card-especial .btn-cotizar, .card-doble .btn-cotizar {
         width: auto;
         padding: 10px 30px;
     }
 }
 
-/* AJUSTE PARA CELULAR (Se apilan uno bajo otro) */
-@media (max-width: 768px) {
-    .card-especial {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-    }
-    .card-especial .img-container {
-        order: -1; /* Foto arriba en el celular */
-        margin-bottom: 20px;
-    }
-}
-
 /* =========================================
-   DISEÑO DE LA TARJETA DOBLE (BASE / PC)
-   ========================================= */
-
-/* En pantallas grandes (PC), usamos un grid de 3 columnas */
-@media (min-width: 992px) {
-    
-    .card-doble {
-        display: grid;
-        grid-template-columns: 1fr auto 1fr; /* Columna Izq - Imagen - Columna Der */
-        align-items: center; /* Centra todo verticalmente */
-        gap: 30px; /* Espacio entre columnas */
-        padding: 40px;
-    }
-
-    /* La imagen central ocupa la columna del medio */
-    .card-doble .img-container {
-        grid-column: 2;
-        margin-bottom: 0; /* Quitamos margen inferior en PC */
-    }
-
-    /* El contenedor de textos ocupa las columnas laterales */
-    .grid-detalles-pc {
-        display: contents; /* Esto hace que los hijos directos (info-producto) se comporten como si estuvieran directamente en card-doble */
-    }
-
-    /* Bloque Izquierdo (220V) */
-    .info-izq {
-        grid-column: 1; /* Primera columna */
-        text-align: right; /* Alineamos el texto a la derecha, hacia la imagen */
-    }
-
-    /* Bloque Derecho (440V) */
-    .info-der {
-        grid-column: 3; /* Tercera columna */
-        text-align: left; /* Alineamos el texto a la izquierda */
-    }
-}
-
-
-/* =========================================
-   AJUSTE PARA CELULARES (Mantiene la columna única)
-   ========================================= */
-@media (max-width: 991px) {
-    
-    .card-doble {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-    }
-
-    /* En móvil, los textos vuelven a ser una lista vertical */
-    .grid-detalles-pc {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        width: 100%;
-        text-align: center; /* Centramos el texto en móvil */
-    }
-
-    .info-producto {
-        width: 100%;
-    }
-}
-
-/* =========================================
-   4. PRODUCTOS GRID (DISEÑO ORIGINAL QUE TE GUSTABA)
+   4. PRODUCTOS EN GRID (Estilos Originales)
    ========================================= */
 .section-title {
     text-align: center;
@@ -207,7 +136,7 @@ nav a:hover {
 
 .grid-productos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Mismo valor de antes */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
     margin-bottom: 50px;
 }
@@ -215,20 +144,19 @@ nav a:hover {
 .card {
     background: #fff;
     padding: 20px;
-    border-radius: 8px; /* Borde original */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra original */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     text-align: center;
     transition: transform 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-10px); /* Efecto original */
+    transform: translateY(-10px);
 }
 
-/* CONTENEDOR FOTOS (EL DISEÑO QUE HACE QUE SE VEAN PERFECTAS) */
 .img-container {
     width: 100%;
-    height: 200px; /* Altura original */
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -241,7 +169,7 @@ nav a:hover {
 .img-container img {
     max-width: 90%;
     max-height: 90%;
-    object-fit: contain; /* No estira la foto */
+    object-fit: contain;
 }
 
 .precio {
@@ -259,11 +187,11 @@ nav a:hover {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    width: 100%; /* Ancho total */
+    width: 100%;
 }
 
 /* =========================================
-   5. TABLA ASGARD (Mismo diseño de antes)
+   5. TABLA ASGARD (Estilos Originales)
    ========================================= */
 .card-destacada-asgard {
     background: #fff;
@@ -274,6 +202,10 @@ nav a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.tabla-modelos-asgard {
+    width: 100%;
 }
 
 .fila-tabla {
@@ -291,8 +223,18 @@ nav a:hover {
     font-weight: bold;
 }
 
+.btn-cotizar-tabla {
+    background: #25d366;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 /* =========================================
-   6. BOTÓN FLOTANTE WHATSAPP (Original)
+   6. BOTÓN FLOTANTE WHATSAPP
    ========================================= */
 .whatsapp-float {
     position: fixed;
@@ -306,7 +248,7 @@ nav a:hover {
     align-items: center;
     justify-content: center;
     box-shadow: 2px 2px 3px #999;
-    z-index: 3000; /* Máxima prioridad */
+    z-index: 3000;
     transition: 0.3s;
 }
 
@@ -320,90 +262,134 @@ nav a:hover {
     height: 35px;
 }
 
-/* ==========================================
-   ESTILOS RESPONSIVOS PARA CELULARES
-   ========================================== */
+/* ==========================================================================
+   7. REGLAS EXCLUSIVAS PARA PANTALLAS DE CELULARES (max-width: 768px)
+   ========================================================================== */
 @media screen and (max-width: 768px) {
     
-    /* 1. Ajuste general del contenedor principal */
     .container {
         padding: 10px;
         width: 100%;
-        overflow-x: hidden; /* Evita el desborde horizontal */
     }
 
-    /* 2. Sección Arrancadores (Se vuelve vertical) */
-    .card-especial {
-        display: flex;
-        flex-direction: column; /* Apila los elementos uno abajo del otro */
+    /* --- CORRECCIÓN CRÍTICA DE NAVEGACIÓN MOVIL --- */
+    .menu-toggle {
+        display: block; /* Muestra el botón de 3 rayas */
+    }
+
+    #main-nav {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Esconde el menú completamente a la derecha */
+        width: 260px;
+        height: 100vh;
+        background-color: #002b55;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 80px 20px 20px 20px;
+        gap: 10px;
+        transition: right 0.3s ease-in-out;
+        z-index: 2000;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    }
+
+    /* JavaScript activará esta clase al presionar ☰ */
+    #main-nav.active {
+        right: 0;
+    }
+
+    .close-menu {
+        display: block; /* Muestra la X */
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    #main-nav a {
+        width: 100%;
+        text-align: left;
+        padding: 12px 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Capa oscura de fondo */
+    .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1999;
+    }
+    
+    .menu-overlay.active {
+        display: block;
+    }
+
+    /* --- APILAMIENTO DE TARJETAS DOBLES Y ESPECIALES --- */
+    .card-especial, .card-doble {
+        display: flex !important;
+        flex-direction: column !important;
         align-items: center;
         text-align: center;
+        padding: 20px !important;
         gap: 20px;
-        padding: 15px;
     }
 
-    .info-producto.izq, 
-    .info-producto.der {
+    .card-especial .img-container, .card-doble .img-container {
+        order: 1; /* Pone la imagen en el tope de la tarjeta */
         width: 100%;
-        order: 2; /* Pone los textos y botones abajo */
+        max-width: 220px;
+        margin-bottom: 10px;
     }
 
-    .img-container {
-        width: 100%;
-        max-width: 250px;
-        order: 1; /* Pone la foto del arrancador arriba en el centro */
-    }
-
-    .img-container img {
-        width: 100%;
-        height: auto;
-    }
-
-    /* 3. Rejilla de Productos (Fuerza 1 sola columna en celulares) */
-    .grid-productos {
-        display: grid;
-        grid-template-columns: 1fr !important; /* Una sola tarjeta por fila */
-        gap: 15px;
-    }
-
-    /* 4. Sección Caja Moldeada (Asgard) y su Tabla */
-    .card-destacada-asgard {
+    .grid-detalles-pc {
         display: flex;
-        flex-direction: column; /* La imagen se pone arriba y la tabla abajo */
+        flex-direction: column;
+        gap: 25px;
+        width: 100%;
+        order: 2; /* Los datos técnicos bajan */
+    }
+
+    .info-producto.izq, .info-producto.der, .info-izq, .info-der {
+        text-align: center !important;
+        width: 100%;
+    }
+
+    /* --- FORZAR UNA SOLA COLUMNA EN EL GRID --- */
+    .grid-productos {
+        grid-template-columns: 1fr !important;
         gap: 20px;
     }
 
-    .img-central-container {
-        width: 100%;
-        text-align: center;
+    /* --- TABLA RESPONSIVA ASGARD --- */
+    .card-destacada-asgard {
+        padding: 10px;
     }
 
-    .img-asgard-destacada {
-        max-width: 200px;
-        height: auto;
-    }
-
-    /* Transformación de la tabla rígida para que no se corte */
     .tabla-modelos-asgard {
-        width: 100%;
-        font-size: 14px; /* Achica un poco la letra para que quepa */
+        font-size: 13px;
     }
 
     .fila-tabla {
-        display: grid;
-        grid-template-columns: 1.2fr 1fr 0.8fr 1fr; /* Distribuye mejor el espacio */
+        grid-template-columns: 1.2fr 1fr 0.8fr 1fr; /* Redistribuye el espacio perfectamente */
         gap: 5px;
         padding: 10px 5px;
-        align-items: center;
     }
 
     .fila-tabla span {
-        white-space: normal; /* Permite que el texto salte de línea si es largo */
+        white-space: normal;
         word-break: break-word;
     }
 
     .btn-cotizar-tabla {
-        padding: 6px 8px;
-        font-size: 12px; /* Botón de cotizar más compacto en la tabla */
+        padding: 6px 6px;
+        font-size: 11px;
     }
 }
